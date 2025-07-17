@@ -1,0 +1,29 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+<div class="header">{% if edit %}4. 등록한 상품 수정하기{% else %}1. 상품 등록하기{% endif %}</div>
+<div class="content">
+    <div class="title">{% if edit %}상품 수정{% else %}상품 등록{% endif %}</div>
+    
+    <form method="post">{% csrf_token %}
+        <div class="form-group">
+            <label>상품명:</label>
+            <input type="text" name="name" value="{{ product.name|default_if_none:'' }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label>상품 설명:</label>
+            <textarea name="description" required>{{ product.description|default_if_none:'' }}</textarea>
+        </div>
+        
+        <div class="form-group">
+            <label>가격:</label>
+            <input type="number" name="price" value="{{ product.price|default_if_none:'' }}" required>
+        </div>
+        
+        <button type="submit" class="btn btn-success">저장</button>
+    </form>
+    
+    <a href="{% url 'product_list' %}" class="back-link">← 목록으로</a>
+</div>
+{% endblock %} 

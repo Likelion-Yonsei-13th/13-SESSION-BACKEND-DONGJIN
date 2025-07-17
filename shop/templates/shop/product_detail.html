@@ -1,0 +1,21 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+<div class="header">3. 개별 상품 조회하기</div>
+<div class="content">
+    <div class="title">{{ product.name }}</div>
+    
+    <div class="product-detail">
+        <p><span class="price">💰 {{ product.price }}원</span></p>
+        <p>{{ product.description }}</p>
+    </div>
+    
+    <div class="action-buttons">
+        <a href="{% url 'product_edit' product.pk %}" class="btn btn-primary">수정</a>
+        <form action="{% url 'product_delete' product.pk %}" method="post" style="display:inline;">{% csrf_token %}
+            <button type="submit" class="btn btn-danger">삭제</button>
+        </form>
+        <a href="{% url 'product_list' %}" class="btn btn-secondary">목록으로</a>
+    </div>
+</div>
+{% endblock %} 

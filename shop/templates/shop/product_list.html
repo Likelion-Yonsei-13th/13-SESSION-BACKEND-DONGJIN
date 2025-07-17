@@ -1,0 +1,31 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+<div class="header">2. 전체 상품 조회 하기</div>
+<div class="content">
+    <div class="title">🛍️ 상품 목록</div>
+    
+    <a href="{% url 'product_create' %}" class="btn btn-primary">+ 새 상품 등록</a>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>상품명</th>
+                <th>가격</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td><a href="{% url 'product_detail' product.pk %}" class="product-name">{{ product.name }}</a></td>
+                <td class="price">{{ product.price }}원</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2" style="text-align: center; color: #666;">등록된 상품이 없습니다.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %} 
